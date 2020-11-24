@@ -1,12 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { ConfigProvider } from 'antd';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import ruRu from 'antd/lib/locale/ru_RU';
+
 import App from './App';
+import store, { history } from './store'
 import reportWebVitals from './reportWebVitals';
+
+import './index.css';
+import 'antd/dist/antd.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <ConfigProvider locale={ruRu}>
+          <App />
+        </ConfigProvider>
+      </ConnectedRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
